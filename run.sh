@@ -1,7 +1,6 @@
 #!/bin/bash
 
 TARGET=$1
-ASM=$2
 
 if [ ! -d "$TARGET" ]; then
     echo "Target directory does not exist."
@@ -17,16 +16,16 @@ if [ -f "$TARGET/a.out" ]; then
     rm "$TARGET/a.out"
 fi
 
-if [ "$ASM" = "--asm" ]; then
-    if clang++ -std=c++11 -o "$TARGET/main.s" -S -O0 "$TARGET/main.cc"; then
-        echo "Compilation successful."
-        echo "$TARGET/main.s generated."
-    fi
-    exit 0
+if [ -f "$TARGET/Makefile" ]; then
+    echo "Compiling with Makefile..."
+    make -C "$TARGET"
+else
+    echo "Compiling with g++..."
+    g++ -std=c++11 -o "$TARGET/a.out" -O0 "$TARGET/main.cc"
 fi
 
-if clang++ -std=c++11 -o "$TARGET/a.out" -O0 "$TARGET/main.cc"; then
-    echo "Compilation successful."
+if [ -f "$TARGET/a.out" ]; then
+    echo "Compilation succeeded."
     echo "Running $TARGET..."
     echo
     "$TARGET/a.out"
