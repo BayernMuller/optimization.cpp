@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TARGET=$1
+ASM=$2
 
 if [ ! -d "$TARGET" ]; then
     echo "Target directory does not exist."
@@ -14,6 +15,14 @@ fi
 
 if [ -f "$TARGET/a.out" ]; then
     rm "$TARGET/a.out"
+fi
+
+if [ "$ASM" = "--asm" ]; then
+    if clang++ -std=c++11 -o "$TARGET/main.s" -S -O0 "$TARGET/main.cc"; then
+        echo "Compilation successful."
+        echo "$TARGET/main.s generated."
+    fi
+    exit 0
 fi
 
 if clang++ -std=c++11 -o "$TARGET/a.out" -O0 "$TARGET/main.cc"; then
