@@ -7,7 +7,7 @@ if [ ! -d "$TARGET" ]; then
     exit 1
 fi
 
-if [ ! -f "$TARGET/main.cc" ]; then
+if [ ! -f "$TARGET/main.cpp" ]; then
     echo "main.cc does not exist."
     exit 1
 fi

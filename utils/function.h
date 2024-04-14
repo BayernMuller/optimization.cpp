@@ -34,7 +34,9 @@ Function::~Function()
 {
     auto duration = std::chrono::high_resolution_clock::now() - start_;
     auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(duration);
-    std::cout << "- " << name_ << "() " << thread_id_ << " took " << ns.count() << " ns" << std::endl;
+    std::cout << "- " << name_ << "() " << thread_id_ << std::endl;
+    std::cout << "  took " << ns.count() << " ns" << std::endl;
+    std::cout << std::endl;
 }
 
 } // namespace utils
