@@ -19,6 +19,7 @@ Skills and techniques for fast and efficient C++ code.
 
 ##### Parallel Programming
 - [False Sharing](false_sharing/): a performance issue that occurs when multiple threads modify variables that reside on the same cache line.
+- [OpenMP](openmp/): an API that supports shared memory multiprocessing, enabling programmers to easily develop multi-threaded applications for parallel computing.
 - [std::async](async/): a high-level interface for managing asynchronous tasks supported by the C++ Standard Library.
 
 ##### Memory and Cache
