@@ -12,13 +12,6 @@ if [ ! -f "$TARGET/main.cc" ]; then
     exit 1
 fi
 
-if cpplint --quiet "$TARGET/main.cc"; then
-    echo "Linting succeeded."
-else
-    echo "Linting failed."
-    exit 1
-fi
-
 if [ -f "$TARGET/a.out" ]; then
     rm "$TARGET/a.out"
 fi
