@@ -19,6 +19,7 @@
 
 #### Requirements
 - C++ compiler with C++20 support
+- cpplint
 
 #### Running the examples
 ```bash
