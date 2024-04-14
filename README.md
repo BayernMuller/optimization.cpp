@@ -1,15 +1,7 @@
 <p align="center">
     <img src="docs/logo.svg" width="100%"/>
+    Skills and techniques for fast and efficient C++ code.
 </p>
-
-
-<span align="center">
-
-# C++ Optimization Skills
-
-Skills and techniques for fast and efficient C++ code.
-
-</span>
 
 ## Table of Contents
 
