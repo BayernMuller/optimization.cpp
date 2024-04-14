@@ -6,7 +6,7 @@
 ## Table of Contents
 
 #### Techniques
-- [Loop Unrolling](loop_unrolling/)
+- [Loop Unrolling](loop_unroll/)
 
 #### Parallel Programming
 - [False Sharing](false_sharing/)
