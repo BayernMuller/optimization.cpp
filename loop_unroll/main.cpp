@@ -1,8 +1,4 @@
-/*
 
-Copyright 2024 Jayden Yang
-
-*/
 
 #include <iostream>
 
@@ -11,9 +7,11 @@ Copyright 2024 Jayden Yang
 constexpr int kSize = 100000000;
 static_assert(kSize % 10 == 0, "kSize must be a multiple of 10 to unroll");
 
-void loop_unroll(std::vector<int>* data) {
+void loop_unroll(std::vector<int> *data)
+{
     utils::Function f(__FUNCTION__);
-    for (int j = 0; j < kSize; j += 10) {
+    for (int j = 0; j < kSize; j += 10)
+    {
         (*data)[j]++;
         (*data)[j + 1]++;
         (*data)[j + 2]++;
@@ -27,24 +25,27 @@ void loop_unroll(std::vector<int>* data) {
     }
 }
 
-
-void loop_unroll_with_pragma_unroll(std::vector<int>* data) {
+void loop_unroll_with_pragma_unroll(std::vector<int> *data)
+{
     utils::Function f(__FUNCTION__);
-    #pragma unroll 10
-    for (int j = 0; j < kSize; ++j) {
+#pragma unroll 10
+    for (int j = 0; j < kSize; ++j)
+    {
         (*data)[j]++;
     }
 }
 
-void no_loop_unroll(std::vector<int>* data) {
+void no_loop_unroll(std::vector<int> *data)
+{
     utils::Function f(__FUNCTION__);
-
-    for (int i = 0; i < kSize; ++i) {
+    for (int i = 0; i < kSize; ++i)
+    {
         (*data)[i]++;
     }
 }
 
-int main() {
+int main()
+{
     std::vector<int> data(kSize, 0);
     loop_unroll(&data);
     loop_unroll_with_pragma_unroll(&data);
