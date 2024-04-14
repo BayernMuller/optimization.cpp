@@ -28,7 +28,7 @@ if [ -f "$TARGET/Makefile" ]; then
     make -C "$TARGET"
 else
     echo "Compiling with g++..."
-    g++ -std=c++11 -o "$TARGET/a.out" -O0 "$TARGET/main.cc"
+    g++ -std=c++20 -o "$TARGET/a.out" -O0 "$TARGET/main.cc"
 fi
 
 if [ -f "$TARGET/a.out" ]; then
