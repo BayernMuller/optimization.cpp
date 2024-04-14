@@ -16,21 +16,21 @@ Skills and techniques for fast and efficient C++ code.
 
 #### Techniques
 - [Loop Unrolling](loop_unroll/)
-    a technique to improve performance by reducing loop overhead.
+    - a technique to improve performance by reducing loop overhead.
 
 #### Parallel Programming
 - [False Sharing](false_sharing/)
-    a performance issue that occurs when multiple threads modify variables that reside on the same cache line.
+    - a performance issue that occurs when multiple threads modify variables that reside on the same cache line.
 - [OpenMP](openmp/)
-    an API that supports shared memory multiprocessing, enabling programmers to easily develop multi-threaded applications for parallel computing.
+    - an API that supports shared memory multiprocessing, enabling programmers to easily develop multi-threaded applications for parallel computing.
 - [std::async](async/)
-    a high-level interface for managing asynchronous tasks supported by the C++ Standard Library.
+    - a high-level interface for managing asynchronous tasks supported by the C++ Standard Library.
 
 #### Memory and Cache
 - [Spatial Locality](spatial_locality/)
-    a principle that states that if a program accesses a memory location, it is likely to access nearby memory locations in the near future.
+    - a principle that states that if a program accesses a memory location, it is likely to access nearby memory locations in the near future.
 - [Temporal Locality](temporal_locality/)
-    a principle that states that if a program accesses a memory location, it is likely to access the same memory location in the near future.
+    - a principle that states that if a program accesses a memory location, it is likely to access the same memory location in the near future.
 
 ### Getting Started
 
