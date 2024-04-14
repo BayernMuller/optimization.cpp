@@ -50,7 +50,7 @@ cd cpp-optimization
 * optimization.cpp is using the Microsoft code style. Please follow this style when contributing.
 * Please add the below command to .git/hooks/pre-commit to run clang-format before committing.
 ```bash
-clang-format -i -style=file $(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(cpp|hpp|c|h)$')
+clang-format -i -style=microsoft $(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(cpp|hpp|c|h)$')
 ```
 
 ### License
