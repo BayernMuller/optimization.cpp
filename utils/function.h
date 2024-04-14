@@ -8,6 +8,7 @@ Copyright 2024 Jayden Yang
 */
 
 #include <chrono> // NOLINT [build/c++11]
+#include <thread> // NOLINT [build/c++11]
 #include <string>
 #include <iostream>
 
@@ -17,6 +18,7 @@ class Function {
  public:
     explicit Function(const char *name);
     Function(Function &) = delete;
+    Function(Function &&) = delete;
     void operator=(Function) = delete;
     ~Function();
 
