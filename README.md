@@ -15,22 +15,16 @@ Skills and techniques for fast and efficient C++ code.
 ### Table of Contents
 
 #### Techniques
-- [Loop Unrolling](loop_unroll/)
-    - a technique to improve performance by reducing loop overhead.
+- [Loop Unrolling](techniques/loop_unroll/) - a technique to improve performance by reducing loop overhead.
 
 #### Parallel Programming
-- [False Sharing](false_sharing/)
-    - a performance issue that occurs when multiple threads modify variables that reside on the same cache line.
-- [OpenMP](openmp/)
-    - an API that supports shared memory multiprocessing, enabling programmers to easily develop multi-threaded applications for parallel computing.
-- [std::async](async/)
-    - a high-level interface for managing asynchronous tasks supported by the C++ Standard Library.
+- [False Sharing](techniques/false_sharing/) - a performance issue that occurs when multiple threads modify variables that reside on the same cache line.
+- [OpenMP](techniques/openmp/) - an API that supports shared memory multiprocessing, enabling programmers to easily develop multi-threaded applications for parallel computing.
+- [std::async](techniques/async/) - a high-level interface for managing asynchronous tasks supported by the C++ Standard Library.
 
 #### Memory and Cache
-- [Spatial Locality](spatial_locality/)
-    - a principle that states that if a program accesses a memory location, it is likely to access nearby memory locations in the near future.
-- [Temporal Locality](temporal_locality/)
-    - a principle that states that if a program accesses a memory location, it is likely to access the same memory location in the near future.
+- [Spatial Locality](techniques/spatial_locality/) - a principle that states that if a program accesses a memory location, it is likely to access nearby memory locations in the near future.
+- [Temporal Locality](techniques/temporal_locality/) - a principle that states that if a program accesses a memory location, it is likely to access the same memory location in the near future.
 
 ### Getting Started
 
@@ -40,7 +34,7 @@ Skills and techniques for fast and efficient C++ code.
 #### Running the examples
 ```bash
 git clone https://github.com/BayernMuller/cpp-optimization
-cd cpp-optimization
+cd cpp-optimization/techniques
 ./run.sh <example>
 ```
 
