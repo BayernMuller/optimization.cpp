@@ -2,7 +2,7 @@
 
 #include "../utils/benchmark.h"
 
-constexpr int kSize = 100000000;
+constexpr int kSize = 1000000000;
 
 void frequent_access(std::vector<int> *data)
 {
@@ -20,18 +20,12 @@ void infrequent_access(std::vector<int> *data)
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
     std::vector<int> data(kSize, 0);
-    frequent_access(&data);
-    // frequent access is faster than infrequent access because of cache hit rate is higher. [NOLINT]
-    infrequent_access(&data);
-    return 0;
+    auto bench = BENCHMARKING(
+        frequent_access,
+        infrequent_access
+    );
+    return bench.run(argc, argv, &data);
 }
-
-/*
-+ frequent_access()
-- frequent_access() took 197698125 ns
-+ infrequent_access()
-- infrequent_access() took 225844333 ns
-*/
