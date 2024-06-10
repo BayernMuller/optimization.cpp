@@ -4,7 +4,7 @@
 #include <random>
 #include <omp.h>
 
-#include "../utils/function.h"
+#include "../utils/benchmark.h"
 
 using vec = std::vector<int>;
 
@@ -15,9 +15,7 @@ constexpr int kThreads = 4;
 static_assert(kIterations > kPrintLimit, "kIterations should be greater than kPrintLimit");
 
 void sum_single_thread(const vec& v1, const vec& v2)
-{
-    utils::Function f(__func__);
-    
+{   
     vec result(kIterations);
     for (size_t i = 0; i < kIterations; ++i)
     {
@@ -32,9 +30,7 @@ void sum_single_thread(const vec& v1, const vec& v2)
 }
 
 void sum_with_openmp(const vec& v1, const vec& v2)
-{
-    utils::Function f(__func__);
-    
+{   
     vec result(kIterations);
 
     #pragma omp parallel for num_threads(kThreads)

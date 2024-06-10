@@ -1,7 +1,7 @@
 #include <thread> 
 #include <vector>
 
-#include "../utils/function.h"
+#include "../utils/benchmark.h"
 
 constexpr int kIterations = 1000000000;
 constexpr int kPaddingSize = 64;
@@ -24,7 +24,6 @@ static_assert(sizeof(UnpaddedInt) == sizeof(int), "UnpaddedInt is padded");
 
 template <typename T> void increment(T *data)
 {
-    utils::Function f(__FUNCTION__);
     for (int i = 0; i < kIterations; ++i)
     {
         data->value++;

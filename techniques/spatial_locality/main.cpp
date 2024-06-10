@@ -1,13 +1,11 @@
 #include <iostream>
 
-#include "../utils/function.h"
+#include "../utils/benchmark.h"
 
 constexpr int kSize = 100;
 
 void row_major(int arr[kSize][kSize][kSize])
 {
-    utils::Function f(__FUNCTION__);
-
     // access array in row-major order
     for (int i = 0; i < kSize; ++i)
     {
@@ -22,9 +20,7 @@ void row_major(int arr[kSize][kSize][kSize])
 }
 
 void column_major(int arr[kSize][kSize][kSize])
-{
-    utils::Function f(__FUNCTION__);
-
+{   
     // access array in column-major order
     for (int i = 0; i < kSize; ++i)
     {

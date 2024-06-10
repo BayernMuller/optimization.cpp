@@ -1,12 +1,11 @@
 #include <iostream>
 
-#include "../utils/function.h"
+#include "../utils/benchmark.h"
 
 constexpr int kSize = 100000000;
 
 void frequent_access(std::vector<int> *data)
 {
-    utils::Function f(__FUNCTION__);
     for (int j = 0; j < kSize; ++j)
     {
         (*data)[0]++;
@@ -15,8 +14,6 @@ void frequent_access(std::vector<int> *data)
 
 void infrequent_access(std::vector<int> *data)
 {
-    utils::Function f(__FUNCTION__);
-
     for (int i = 0; i < kSize; ++i)
     {
         (*data)[i]++;

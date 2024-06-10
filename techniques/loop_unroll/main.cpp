@@ -1,13 +1,12 @@
 #include <iostream>
 
-#include "../utils/function.h"
+#include "../utils/benchmark.h"
 
 constexpr int kSize = 100000000;
 static_assert(kSize % 10 == 0, "kSize must be a multiple of 10 to unroll");
 
 void loop_unroll(std::vector<int> *data)
 {
-    utils::Function f(__FUNCTION__);
     for (int j = 0; j < kSize; j += 10)
     {
         (*data)[j]++;
@@ -25,7 +24,6 @@ void loop_unroll(std::vector<int> *data)
 
 void loop_unroll_with_pragma_unroll(std::vector<int> *data)
 {
-    utils::Function f(__FUNCTION__);
 #pragma unroll 10
     for (int j = 0; j < kSize; ++j)
     {
@@ -35,7 +33,6 @@ void loop_unroll_with_pragma_unroll(std::vector<int> *data)
 
 void no_loop_unroll(std::vector<int> *data)
 {
-    utils::Function f(__FUNCTION__);
     for (int i = 0; i < kSize; ++i)
     {
         (*data)[i]++;

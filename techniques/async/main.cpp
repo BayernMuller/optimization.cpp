@@ -1,15 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <future>
-
-#include "../utils/function.h"
+#include "../utils/benchmark.h"
 
 constexpr int kIterations = 1000000;
 
 int sum_single_thread()
 {
-    utils::Function f(__func__);
     std::vector<int> v(kIterations, 1);
+
     int sum = 0;
     for (int i = 0; i < kIterations; ++i)
     {
@@ -20,7 +19,6 @@ int sum_single_thread()
 
 int sum_with_async()
 {
-    utils::Function f(__func__);
     std::vector<int> v(kIterations, 1);
     
     constexpr int kThreads = 4;
