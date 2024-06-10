@@ -1,34 +1,39 @@
 #!/bin/bash
 
 TARGET=$1
+OPTION=$2
+
+function log() {
+    echo -e "\033[1;32m$1\033[0m" >&2
+}
 
 if [ ! -d "$TARGET" ]; then
-    echo "Target directory does not exist."
+    log "Target directory does not exist."
     exit 1
 fi
 
 if [ ! -f "$TARGET/main.cpp" ]; then
-    echo "main.cc does not exist."
+    log "main.cc does not exist."
     exit 1
 fi
 
-if [ -f "$TARGET/a.out" ]; then
-    rm "$TARGET/a.out"
+if [ -f "$TARGET/*.out" ]; then
+    rm "$TARGET/*.out"
 fi
 
 if [ -f "$TARGET/Makefile" ]; then
-    echo "Compiling with Makefile..."
+    log "Compiling with Makefile..."
     make -C "$TARGET"
 else
-    echo "Compiling with g++..."
-    g++ -std=c++20 -o "$TARGET/a.out" -O0 "$TARGET/main.cpp"
+    log "Compiling with g++..."
+    g++ -std=c++20 -o "$TARGET/a.out" -O0 "$TARGET/main.cpp" "$OPTION"
 fi
 
 if [ -f "$TARGET/a.out" ]; then
-    echo "Compilation succeeded."
-    echo "Running $TARGET..."
-    echo
+    log "Compilation succeeded."
+    log "Running $TARGET..."
+    log
     "$TARGET/a.out"
 else
-    echo "Compilation failed."
+    log "Compilation failed."
 fi
