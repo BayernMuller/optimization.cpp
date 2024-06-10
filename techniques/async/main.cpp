@@ -48,26 +48,11 @@ int sum_with_async()
     return sum;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    auto single_thread_sum = sum_single_thread();
-    auto async_sum = sum_with_async();
-    
-    std::cout << "Single thread sum: " << single_thread_sum << std::endl;
-    std::cout << "Async sum: " << async_sum << std::endl;
+    auto bench = BENCHMARKING(
+        sum_single_thread,
+        sum_with_async
+    );
+    return bench.run(argc, argv);
 }
-
-/*
-
-+ sum_single_thread() 0x1f769b900
-- sum_single_thread() 0x1f769b900
-  took 29573791 ns
-
-+ sum_with_async() 0x1f769b900
-- sum_with_async() 0x1f769b900
-  took 19723125 ns
-
-Single thread sum: 1000000
-Async sum: 1000000
-
-*/
