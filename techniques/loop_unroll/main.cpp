@@ -39,20 +39,13 @@ void no_loop_unroll(std::vector<int> *data)
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
     std::vector<int> data(kSize, 0);
-    loop_unroll(&data);
-    loop_unroll_with_pragma_unroll(&data);
-    no_loop_unroll(&data);
-    return 0;
+    auto bench = BENCHMARKING(
+        loop_unroll,
+        loop_unroll_with_pragma_unroll,
+        no_loop_unroll
+    );
+    return bench.run(argc, argv, &data);
 }
-
-/*
-+ loop_unroll()
-- loop_unroll() took 21630250 ns
-+ loop_unroll_with_pragma_unroll()
-- loop_unroll_with_pragma_unroll() took 13396583 ns
-+ no_loop_unroll()
-- no_loop_unroll() took 37302709 ns
-*/
