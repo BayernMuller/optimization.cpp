@@ -5,6 +5,7 @@
 
 constexpr int kIterations = 1000000000;
 constexpr int kPaddingSize = 64;
+constexpr int kThreadCount = 4;
 
 struct PaddedInt
 {
@@ -30,54 +31,58 @@ template <typename T> void increment(T *data)
     }
 }
 
-int main()
+int sum_padded_data()
 {
-    constexpr int kThreadCount = 4;
-
-    std::thread threads1[kThreadCount];
+    std::thread threads[kThreadCount];
     std::vector<PaddedInt> padded_data(kThreadCount);
 
     for (int i = 0; i < kThreadCount; ++i)
     {
-        threads1[i] = std::thread(increment<PaddedInt>, &padded_data[i]);
+        threads[i] = std::thread(increment<PaddedInt>, &padded_data[i]);
     }
 
-    for (auto &thread : threads1)
+    for (auto &thread : threads)
     {
         thread.join();
     }
 
-    std::thread threads2[kThreadCount];
+    int sum = 0;
+    for (int i = 0; i < kThreadCount; ++i)
+    {
+        sum += padded_data[i].value;
+    }
+    return sum;
+}
+
+int sum_unpadded_data()
+{
+    std::thread threads[kThreadCount];
     std::vector<UnpaddedInt> unpadded_data(kThreadCount);
 
     for (int i = 0; i < kThreadCount; ++i)
     {
-        threads2[i] = std::thread(increment<UnpaddedInt>, &unpadded_data[i]);
+        threads[i] = std::thread(increment<UnpaddedInt>, &unpadded_data[i]);
     }
 
-    for (auto &thread : threads2)
+    for (auto &thread : threads)
     {
         thread.join();
     }
 
-    return 0;
+    int sum = 0;
+    for (int i = 0; i < kThreadCount; ++i)
+    {
+        sum += unpadded_data[i].value;
+    }
+    return sum;
 }
+    
 
-/*
-+ increment() 0x16f8bb000
-+ increment() 0x16fa5f000
-+ increment() 0x16f9d3000
-+ increment() 0x16f947000
-- increment() 0x16fa5f000 took 2068267708 ns
-- increment() 0x16f9d3000 took 2075802166 ns
-- increment() 0x16f8bb000 took 2100436291 ns
-- increment() 0x16f947000 took 2102462958 ns
-+ increment() 0x16f8bb000
-+ increment() 0x16f947000
-+ increment() 0x16fa5f000
-+ increment() 0x16f9d3000
-- increment() 0x16f8bb000 took 2197488875 ns
-- increment() 0x16fa5f000 took 2208755500 ns
-- increment() 0x16f9d3000 took 2216119417 ns
-- increment() 0x16f947000 took 2230533917 ns
-*/
+int main(int argc, char* argv[])
+{
+    auto bench = BENCHMARKING(
+        sum_padded_data,
+        sum_unpadded_data
+    );
+    return bench.run(argc, argv);
+}
