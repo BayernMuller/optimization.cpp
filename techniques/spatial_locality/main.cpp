@@ -2,9 +2,10 @@
 
 #include "../utils/benchmark.h"
 
-constexpr int kSize = 100;
+constexpr int kSize = 500;
+using ThreeDArray = std::vector<std::vector<std::vector<int>>>;
 
-void row_major(int arr[kSize][kSize][kSize])
+void row_major(ThreeDArray& arr)
 {
     // access array in row-major order
     for (int i = 0; i < kSize; ++i)
@@ -19,7 +20,7 @@ void row_major(int arr[kSize][kSize][kSize])
     }
 }
 
-void column_major(int arr[kSize][kSize][kSize])
+void column_major(ThreeDArray& arr)
 {   
     // access array in column-major order
     for (int i = 0; i < kSize; ++i)
@@ -34,11 +35,12 @@ void column_major(int arr[kSize][kSize][kSize])
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    int arr[kSize][kSize][kSize];
-    // row major access is faster than column major access!
-    row_major(arr);
-    column_major(arr);
-    return 0;
+    ThreeDArray arr(kSize, std::vector<std::vector<int>>(kSize, std::vector<int>(kSize, 0)));
+    auto bench = BENCHMARKING(
+        row_major,
+        column_major
+    );
+    return bench.run(argc, argv, arr);
 }
