@@ -1,7 +1,7 @@
 #include <thread> 
 #include <vector>
 
-#include "../utils/benchmark.h"
+#include "utils/benchmark.h"
 
 constexpr int kIterations = 1000000000;
 constexpr int kPaddingSize = 64;

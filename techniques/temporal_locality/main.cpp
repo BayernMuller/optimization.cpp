@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../utils/benchmark.h"
+#include "utils/benchmark.h"
 
 constexpr int kSize = 1000000000;
 

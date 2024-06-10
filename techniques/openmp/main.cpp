@@ -4,7 +4,7 @@
 #include <random>
 #include <omp.h>
 
-#include "../utils/benchmark.h"
+#include "utils/benchmark.h"
 
 constexpr int kIterations = 100000000;
 constexpr int kPrintLimit = 20;

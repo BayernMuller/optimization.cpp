@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../utils/benchmark.h"
+#include "utils/benchmark.h"
 
 constexpr int kSize = 100000000;
 static_assert(kSize % 10 == 0, "kSize must be a multiple of 10 to unroll");

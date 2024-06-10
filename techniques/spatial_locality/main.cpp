@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../utils/benchmark.h"
+#include "utils/benchmark.h"
 
 constexpr int kSize = 500;
 using ThreeDArray = std::vector<std::vector<std::vector<int>>>;

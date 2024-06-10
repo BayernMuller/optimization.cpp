@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <future>
-#include "../utils/benchmark.h"
+#include "utils/benchmark.h"
 
 constexpr int kIterations = 1000000;
 
