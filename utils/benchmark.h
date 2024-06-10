@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <chrono>
 
 namespace benchmark
 {
@@ -15,11 +16,12 @@ class Benchmark : public std::vector<std::pair<std::string, Function>>
 public:
     using std::vector<std::pair<std::string, Function>>::vector;
 
-    int run(int argc, char* argv[])
+    template<typename... Args>
+    int run(int argc, char* argv[], Args... args)
     {
         if (argc < 2)
         {
-            runAll();
+            runAll(args...);
             return 0;
         }
 
@@ -29,7 +31,7 @@ public:
             std::cerr << "Invalid benchmark index" << std::endl;
             return 1;
         }
-        auto took = runFunction((*this)[function_index]);
+        auto took = runFunction((*this)[function_index], args...);
         std::cout << "{";
         std::cout << "\"name\": \"" << (*this)[function_index].first << "\"";
         std::cout << ", \"took\": " << took;
@@ -38,20 +40,22 @@ public:
     }
 
 private:
-    void runAll()
+    template<typename... Args>
+    void runAll(Args... args)
     {
         for (const auto &f : *this)
         {
-            runFunction(f);
+            runFunction(f, args...);
         }
     }
 
-    auto runFunction(const std::pair<std::string, Function> &f)
+    template<typename... Args>
+    auto runFunction(const std::pair<std::string, Function> &f, Args... args)
     {
         std::cerr << "+ " << f.first << "()" << std::endl;
         auto start = std::chrono::high_resolution_clock::now();
         
-        f.second();
+        f.second(args...);
         
         auto end = std::chrono::high_resolution_clock::now();
         auto took = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
