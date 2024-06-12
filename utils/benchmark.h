@@ -29,7 +29,7 @@ public:
         if (function_index < 0 || function_index >= this->size())
         {
             std::cerr << "Invalid benchmark index" << std::endl;
-            return 1;
+            return 9; // KILL(9) intentionally
         }
         auto took = runFunction((*this)[function_index], args...);
         std::cout << "{";

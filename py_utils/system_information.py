@@ -1,24 +1,30 @@
 import platform
 import psutil
+import cpuinfo
 
 class SystemInformation:
     def __init__(self):
         self.os_name = platform.system()
         self.os_version = platform.version()
+        self.cpu = cpuinfo.get_cpu_info()['brand_raw']
         self.cpu_count = psutil.cpu_count(logical=True)
         self.physical_cpu_count = psutil.cpu_count(logical=False)
         self.cpu_frequency = psutil.cpu_freq().current if psutil.cpu_freq() else 'Unknown'
         self.total_memory = psutil.virtual_memory().total
-        self.architecture = platform.architecture()
-
-    def __str__(self):
-        return (f"Operating System: {self.os_name} {self.os_version}\n"
-                f"CPU Count: {self.cpu_count} (Logical), {self.physical_cpu_count} (Physical)\n"
-                f"CPU Frequency: {self.cpu_frequency} MHz\n"
-                f"Total Memory: {self.total_memory / (1024 ** 3):.2f} GB\n"
-                f"CPU Architecture: {self.architecture}\n")
+        self.architecture = platform.machine()
     
+    def __dict__(self):
+        return {
+            'os_name': self.os_name,
+            'os_version': self.os_version,
+            'cpu': self.cpu,
+            'logical_cpu_count': self.cpu_count,
+            'physical_cpu_count': self.physical_cpu_count,
+            'cpu_frequency': f'{self.cpu_frequency:.2f} MHz',
+            'total_memory': f'{self.total_memory / 1024 / 1024 / 1024:.2f} GB',
+            'architecture': self.architecture
+        }
 
 if __name__ == '__main__':
     si = SystemInformation()
-    print(si)
+    print(si.__dict__())
